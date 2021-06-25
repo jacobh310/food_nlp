@@ -1,3 +1,8 @@
 venv/
 .idea/
 data_cleaning_exploration_model_building/.ipynb_checkpoints/
+.tmp.drivedownload/
+data_cleaning_exploration_model_building/glove.6B.50d.txt
+data_cleaning_exploration_model_building/glove.6B.100d.txt
+data_cleaning_exploration_model_building/glove.6B.200d.txt
+data_cleaning_exploration_model_building/callbacks/
