@@ -17,10 +17,10 @@ def get_page_links(num_pages,url):
             next_url = 'https://www.tripadvisor.com' + next_button['href']
         except: break
         page_links.append(next_url)
-
         next_link = requests.get(next_url)
         page = bs(next_link.text, 'lxml')
     page_links.insert(0, url)
+    print(len(page_links))
     return page_links
 
 
@@ -113,21 +113,25 @@ def get_all_review_info(num_pages,url):
             print(f'{j} review pages scrapped')
             next_link = requests.get(next_url)   # gets the url to the next page of reviews
             page = bs(next_link.text, 'lxml')
-            j += 1
+
     return df
 
 if __name__ == "__main__":
-    links = {'Los Angeles':'https://www.tripadvisor.com/Restaurants-g32655-c10646-Los_Angeles_California.html',
-             'San Diego':'https://www.tripadvisor.com/Restaurants-g60750-c10646-San_Diego_California.html',
-             'San Francisco':'https://www.tripadvisor.com/Restaurants-g60713-c10646-San_Francisco_California.html',
-             'Orange County': 'https://www.tripadvisor.com/Restaurants-g659482-c10646-Orange_County_California.html'}
+    # links = {'Los Angeles':'https://www.tripadvisor.com/Restaurants-g32655-c10646-Los_Angeles_California.html',
+    #          'San Diego':'https://www.tripadvisor.com/Restaurants-g60750-c10646-San_Diego_California.html',
+    #          'San Francisco':'https://www.tripadvisor.com/Restaurants-g60713-c10646-San_Francisco_California.html',
+    #          'Orange County': 'https://www.tripadvisor.com/Restaurants-g659482-c10646-Orange_County_California.html',
+    #          'New York': 'https://www.tripadvisor.com/Restaurants-g60763-c10646-New_York_City_New_York.html',
+    #          'Atalanta': 'https://www.tripadvisor.com/Restaurants-g60898-c10646-Atlanta_Georgia.html'}
 
-    # link = 'https://www.tripadvisor.com/Restaurants-g32655-c10646-Los_Angeles_California.html'
-    # link = 'https://www.tripadvisor.com/Restaurants-g60750-c10646-San_Diego_California.html'
-    # link = 'https://www.tripadvisor.com/Restaurants-g60713-c10646-San_Francisco_California.html'
-    # link = 'https://www.tripadvisor.com/Restaurants-g60763-c10646-New_York_City_New_York.html'
-    # link = 'https://www.tripadvisor.com/Restaurants-g60898-c10646-Atlanta_Georgia.html'
-    # link = 'https://www.tripadvisor.com/Restaurants-g659482-c10646-Orange_County_California.html'
+
+    links = {
+            # 'Los Angeles':'https://www.tripadvisor.com/Restaurants-g32655-Los_Angeles_California.html',
+            #  'San Diego':'https://www.tripadvisor.com/Restaurants-g60750-San_Diego_California.html',
+            # 'New York': 'https://www.tripadvisor.com/Restaurants-g60763-New_York_City_New_York.html',
+            #  'San Francisco':'https://www.tripadvisor.com/Restaurants-g60713-San_Francisco_California.html',
+            #  'Orange County': 'https://www.tripadvisor.com/Restaurants-g659482-Orange_County_California.html',
+             'Atalanta': 'https://www.tripadvisor.com/Restaurants-g60898-Atlanta_Georgia.html'}
 
     for city, link in links.items():
         print(city)
