@@ -1,0 +1,9 @@
+Dockerfile
+*.pyc
+*.pyo
+*.pyd
+__pycache__
+.pytest_cache
+.idea
+Los Angeles_restaurant only reviews.csv
+test.py

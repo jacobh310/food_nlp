@@ -10,3 +10,4 @@ Backend/lstm_finetune_novec.h5
 Backend/__pycache__/
 Backend/test.py
 Backend/Los Angeles_restaurant only reviews.csv
+__pycache__/
