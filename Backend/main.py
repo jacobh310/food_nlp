@@ -24,6 +24,7 @@ def predict_csv(df):
   """"
   Takes in a pandas dataframe of reviews and returns a json string with reviews and predictions
   """
+
   x = df.values
   x_vec = vectorizer(x)
   probs = model.predict(x_vec)
@@ -47,12 +48,13 @@ def index():
 
 @app.route("/predictions", methods=['GET',"POST"])
 def predictions():
+
   try:
-    file = request.files['file']
+    json = request.get_json()
   except:
     return jsonify({'error': 'could not read file'})
 
-  df = pd.read_csv(file)
+  df = pd.read_json(json)
   response = predict_csv(df)
 
   return response, 201
@@ -60,4 +62,5 @@ def predictions():
 
 
 if __name__ == '__main__':
+  # app.run(debug=True,  host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
   app.run(debug=True)
