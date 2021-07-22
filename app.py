@@ -5,7 +5,7 @@ import utils
 import os
 import json
 
-dev = True
+dev = False
 
 if dev:
     URL_PREDICTIONS = "http://127.0.0.1:5000/predictions"
@@ -60,7 +60,7 @@ if options[1] == mode:
         st.dataframe(pred_df.head())
 
         blob_name = f"{uploaded_file.name.split('.')[0]}_predictions.csv"
-
+        ## upload to GCS
         client = storage.Client()
         bucket = client.get_bucket(BUCKET_NAME)
         blob = bucket.blob(blob_name, chunk_size=262144)
