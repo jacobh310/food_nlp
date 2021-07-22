@@ -11,3 +11,4 @@ Backend/__pycache__/
 Backend/test.py
 Backend/Los Angeles_restaurant only reviews.csv
 __pycache__/
+*.json
