@@ -20,7 +20,7 @@ else:
     URL_PREDICT  =  os.environ.get('URL_PREDICT')
     URL_PREDICTIONS = os.environ.get('URL_PREDICTIONS')
     PROJECT_NAME = os.environ.get('PROJECT_NAME')
-    BUCKET_NAME = os.environ.get('food-nlp-data')
+    BUCKET_NAME = os.environ.get('BUCKET_NAME')
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "google-credentials.json"
 
 
