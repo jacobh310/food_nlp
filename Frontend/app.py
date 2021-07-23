@@ -20,7 +20,7 @@ else:
 BUCKET_NAME = 'food-nlp-data'
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "calm-spring-320419-39eded0b835c.json"
 PROJECT_NAME = 'calm-spring-320419'
-UPLOAD = False
+
 
 
 options = ('Single Review','CSV File', "Data Analysis")
