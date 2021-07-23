@@ -4,22 +4,25 @@ from google.cloud import storage
 import utils
 import os
 import gcsfs
+from oauth2client.service_account import ServiceAccountCredentials
 
 
-dev = False
+dev = True
 
 if dev:
-    URL_PREDICTIONS = "http://127.0.0.1:5000/predictions"
-    URL_PREDICT = "http://127.0.0.1:5000/predict"
-else:
     URL_PREDICT  =  "https://food-nlp-g5yr3ihzpq-uw.a.run.app/predict"
     URL_PREDICTIONS = "https://food-nlp-g5yr3ihzpq-uw.a.run.app/predictions"
+    BUCKET_NAME = 'food-nlp-data'
+    PROJECT_NAME = 'calm-spring-320419'
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "calm-spring-320419-39eded0b835c.json"
 
 
-BUCKET_NAME = 'food-nlp-data'
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "calm-spring-320419-39eded0b835c.json"
-PROJECT_NAME = 'calm-spring-320419'
-
+else:
+    URL_PREDICT  =  os.environ.get('URL_PREDICT')
+    URL_PREDICTIONS = os.environ.get('URL_PREDICTIONS')
+    PROJECT_NAME = 'calm-spring-320419'
+    BUCKET_NAME = 'food-nlp-data'
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "google-credentials.json"
 
 
 options = ('Single Review','CSV File', "Data Analysis")
@@ -87,6 +90,7 @@ if options[1] == mode:
             blob = bucket.blob(path, chunk_size=262144)
             blob.upload_from_string(pred_df.to_csv(index=False), 'text/csv')
             st.success("File Uploaded to Cloud Storage")
+
 
 if options[2] == mode:
 
