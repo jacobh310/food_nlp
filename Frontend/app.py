@@ -77,7 +77,9 @@ if options[1] == mode:
         st.write("Preview of Predictions")
         st.dataframe(pred_df.head())
 
-        if UPLOAD:
+        upload = st.selectbox("Upload to GCS", ("No", "Yes"))
+
+        if upload == "Yes":
             blob_name = f"{uploaded_file.name.split('.')[0]}_predictions.csv"
             path = f"output_data/{blob_name}"
             ## upload to GCS
@@ -85,7 +87,7 @@ if options[1] == mode:
             bucket = client.get_bucket(BUCKET_NAME)
             blob = bucket.blob(path, chunk_size=262144)
             blob.upload_from_string(pred_df.to_csv(index=False), 'text/csv')
-            st.success('CSV Saved to GCS')
+            st.success("File Uploaded to Cloud Storage")
 
 if options[2] == mode:
 
