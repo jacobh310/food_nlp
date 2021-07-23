@@ -2,26 +2,16 @@ import streamlit as st
 import pandas as pd
 from google.cloud import storage
 import utils
-import os
 import gcsfs
-
+import config
 
 dev = False
 
 if dev:
-    URL_PREDICT  =  "https://food-nlp-g5yr3ihzpq-uw.a.run.app/predict"
-    URL_PREDICTIONS = "https://food-nlp-g5yr3ihzpq-uw.a.run.app/predictions"
-    BUCKET_NAME = 'food-nlp-data'
-    PROJECT_NAME = 'calm-spring-320419'
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "calm-spring-320419-39eded0b835c.json"
-
+    env = config.DevConfig()
 
 else:
-    URL_PREDICT  =  os.environ.get('URL_PREDICT')
-    URL_PREDICTIONS = os.environ.get('URL_PREDICTIONS')
-    PROJECT_NAME = os.environ.get('PROJECT_NAME')
-    BUCKET_NAME = os.environ.get('BUCKET_NAME')
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "google-credentials.json"
+    env = config.ProdConfig()
 
 
 options = ('Single Review','CSV File', "Data Analysis")
@@ -42,7 +32,7 @@ if options[0] == mode:
             st.warning("Please enter text. Not a number")
         else:
             try:
-                resp = utils.get_predict(URL_PREDICT, review)
+                resp = utils.get_predict(env.URL_PREDICT, review)
                 if resp['prediction'] == 1:
                     st.header("That was a five star review")
                 else:
@@ -72,7 +62,7 @@ if options[1] == mode:
         # Convert to JSON and send to Flask server
         df = pd.read_csv(uploaded_file)
         json_data = df.to_json(orient='records')
-        resp = utils.get_predictions(URL_PREDICTIONS, json_data)
+        resp = utils.get_predictions(env.URL_PREDICTIONS, json_data)
 
         pred_df = pd.DataFrame(resp)
         st.write("Preview of Predictions")
@@ -85,7 +75,7 @@ if options[1] == mode:
             path = f"output_data/{blob_name}"
             ## upload to GCS
             client = storage.Client()
-            bucket = client.get_bucket(BUCKET_NAME)
+            bucket = client.get_bucket(env.BUCKET_NAME)
             blob = bucket.blob(path, chunk_size=262144)
             blob.upload_from_string(pred_df.to_csv(index=False), 'text/csv')
             st.success("File Uploaded to Cloud Storage")
@@ -95,7 +85,7 @@ if options[2] == mode:
 
     @st.cache
     def load_data():
-        fs = gcsfs.GCSFileSystem(project= PROJECT_NAME)
+        fs = gcsfs.GCSFileSystem(project= env.PROJECT_NAME)
         with fs.open("food-nlp-data/train_test_val_data/no_reviews.csv") as f:
             df = pd.read_csv(f)
         return df
