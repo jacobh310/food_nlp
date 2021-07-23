@@ -1,6 +1,6 @@
 import requests
 import matplotlib.pyplot as plt
-import streamlit as st
+
 
 def get_predict(url, review):
     """
