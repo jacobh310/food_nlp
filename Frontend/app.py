@@ -7,7 +7,7 @@ import gcsfs
 from oauth2client.service_account import ServiceAccountCredentials
 
 
-dev = True
+dev = False
 
 if dev:
     URL_PREDICT  =  "https://food-nlp-g5yr3ihzpq-uw.a.run.app/predict"
@@ -20,8 +20,8 @@ if dev:
 else:
     URL_PREDICT  =  os.environ.get('URL_PREDICT')
     URL_PREDICTIONS = os.environ.get('URL_PREDICTIONS')
-    PROJECT_NAME = 'calm-spring-320419'
-    BUCKET_NAME = 'food-nlp-data'
+    PROJECT_NAME = os.environ.get('PROJECT_NAME')
+    BUCKET_NAME = os.environ.get('food-nlp-data')
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "google-credentials.json"
 
 
