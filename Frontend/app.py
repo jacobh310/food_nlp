@@ -4,7 +4,6 @@ from google.cloud import storage
 import utils
 import os
 import gcsfs
-from oauth2client.service_account import ServiceAccountCredentials
 
 
 dev = False
