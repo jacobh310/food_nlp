@@ -6,6 +6,7 @@ import os
 import gcsfs
 import json
 
+
 dev = False
 
 if dev:
@@ -18,6 +19,7 @@ else:
 
 BUCKET_NAME = 'food-nlp-data'
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "calm-spring-320419-39eded0b835c.json"
+PROJECT_NAME = 'calm-spring-320419'
 UPLOAD = False
 
 
@@ -89,7 +91,7 @@ if options[2] == mode:
 
     @st.cache
     def load_data():
-        fs = gcsfs.GCSFileSystem(project='calm-spring-320419')
+        fs = gcsfs.GCSFileSystem(project= PROJECT_NAME)
         with fs.open("food-nlp-data/train_test_val_data/no_reviews.csv") as f:
             df = pd.read_csv(f)
         return df
