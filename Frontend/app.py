@@ -22,7 +22,7 @@ if options[0] == mode:
     st.markdown("<h1 style='text-align: center; color:#295E61 ;'>Restaurant 5 Star Review Classification</h1>",
                 unsafe_allow_html=True)
 
-    st.write("""This website hosts a LSTM Neural Network pretrained and fine tuned on the 300 dimensional Glove Embeddings. 
+    st.write("""This website hosts a LSTM Neural Network pretrained and fine tuned on 300 dimensional Glove Embeddings. 
     The model was trained on around on 1 million reviews and ratings that were scrapped off Tripadvisor.com.
     It is a classification algorithm which outputs a 1 for a 5 star review and a 0 for anything else""")
     review = st.text_input('Enter review here...')
@@ -49,9 +49,9 @@ if options[1] == mode:
 
     st.markdown("<h1 style='text-align: center; color:#295E61 ;'>Restaurant 5 Star Review Classification</h1>",
                 unsafe_allow_html=True)
-    st.write("""This website hosts a LSTM Neural Network pretrained and fine tuned on the 300 dimensional Glove 
+    st.write("""This website hosts a LSTM Neural Network pretrained and fine tuned on 300 dimensional Glove 
     Embeddings. 
-       The model was trained around 1 million reviews and ratings that were scrapped of Tripadvisor.com.
+       The model was trained on around 1 million reviews and ratings that were scrapped off Tripadvisor.com.
        It is a classification algorithm which outputs a 1 for a 5 star review and a 0 for anything else""")
 
     st.write("Upload CSV file filled with unlabeled reviews")
