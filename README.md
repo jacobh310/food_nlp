@@ -87,7 +87,7 @@ I took the best performing parameters from the sweeps and trained and validated 
 ### ROC curve
 ![Alt text](https://github.com/jacobh310/food_nlp/blob/master/images/roc_curve.JPG)
 
-### Model Deployment
+# Model Deployment
 ---
 - I built a flask API with two endpoints. One for a single review and the other for CSV file containing multiple reviews. The flask server was Dockerized and deployed to Google Cloud Run
 - For the front end, I used streamlit to build a user friendly interface
