@@ -13,7 +13,8 @@
 ### Code and Resources Used 
 ---
 **Python Version:** 3.8  
-**Packages:**  pandas, numpy, sklearn, matplotlib,  beautifulsoup, flask, json, pickle, tensorflow, gcloud
+**Packages:**  pandas, numpy, sklearn, matplotlib,  beautifulsoup, flask, json, pickle, tensorflow, gcloud  
+**Model Building:**  https://keras.io/examples/nlp/pretrained_word_embeddings/
 
 ## Data Collection:
 ---
@@ -29,5 +30,27 @@ Data was scrapped for restuarants in:
 - Orange County
 - Atalanta
 - New York
+
+## Data Cleaning and Preprocessing
+---
+Tensorflow offers a TextVectorization preproccessing layers that strips puncutation and lowers the case of all the letters.
+Other data cleaning operations included:
+-  "...More" was removed from the long reviews
+-  The rating was divided by 10 to make it a out of 5 instead of 50
+
+
 ## Exploratory Data Analysis
+---
+- Ratings are skewed to the left. The avverage review is 4.23 despite the max being a 5. The media being a 5 indicates that, at least 50 percent of reviews are 5 stars. To mitigate the class imbalance, the ratings column was transformed to 1 for 5 star review and 0 for non 5 star review
+- More majority of the reviews are held by the popular restuaurants. This is evident when looking at the mean and the 75 percentile. The average amount of revieews per restuarant is 64.86 while the 75th percentile is only 44.
+### Histograms and describe
+- La Puerta has almost 35,000 out of the millions reviews. Any algorithim can overfit the the reviews of La Puerta. To avoid this, we can set up a potential experimenent where a threshold is set and reviews from restuarants the suprass the threshold are randomly reviewed
+### Cat plots
+
+## Model Building
+---
+- First lets establish some evaluatoin metrics. The data set is not severly imbalanced with 55/45 split. The main evaluation metric is F1 score but we will also be tracking accuracy, precision and recall to get a more complete picture on the model's performance
+- I used Scikit Learn's Naive Bayes MultinomialNB algorithim to get a non deep neural netwrok base metrics we can aim to beat
+- I used Weights and Biases for experiment trackig and hyperparamter sweeps. I performed 5 hyperparameter sweeps:
+
 
