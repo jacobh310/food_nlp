@@ -43,9 +43,10 @@ Other data cleaning operations included:
 ---
 - Ratings are skewed to the left. The avverage review is 4.23 despite the max being a 5. The media being a 5 indicates that, at least 50 percent of reviews are 5 stars. To mitigate the class imbalance, the ratings column was transformed to 1 for 5 star review and 0 for non 5 star review
 - More majority of the reviews are held by the popular restuaurants. This is evident when looking at the mean and the 75 percentile. The average amount of revieews per restuarant is 64.86 while the 75th percentile is only 44.
-### Histograms and describe
+![Alt text](https://github.com/jacobh310/food_nlp/blob/master/images/histograms.JPG)
 - La Puerta has almost 35,000 out of the millions reviews. Any algorithim can overfit the the reviews of La Puerta. To avoid this, we can set up a potential experimenent where a threshold is set and reviews from restuarants the suprass the threshold are randomly reviewed
-### Cat plots
+![Alt text](https://github.com/jacobh310/food_nlp/blob/master/images/cat_plots.JPG)
+
 
 ## Model Building
 ---
