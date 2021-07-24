@@ -15,6 +15,7 @@
 **Python Version:** 3.8  
 **Packages:**  pandas, numpy, sklearn, matplotlib,  beautifulsoup, flask, json, pickle, tensorflow, gcloud  
 **Model Building:**  https://keras.io/examples/nlp/pretrained_word_embeddings/
+**Goole Cloud Run Deployment:** https://www.youtube.com/watch?v=vieoHqt7pxo
 
 ## Data Collection:
 ---
@@ -37,6 +38,7 @@ Tensorflow offers a TextVectorization preproccessing layers that strips puncutat
 Other data cleaning operations included:
 -  "...More" was removed from the long reviews
 -  The rating was divided by 10 to make it a out of 5 instead of 50
+-  Data was split into Train/Validation/Test with a 90/5/5 split
 
 
 ## Exploratory Data Analysis
@@ -52,6 +54,44 @@ Other data cleaning operations included:
 ---
 - First lets establish some evaluatoin metrics. The data set is not severly imbalanced with 55/45 split. The main evaluation metric is F1 score but we will also be tracking accuracy, precision and recall to get a more complete picture on the model's performance
 - I used Scikit Learn's Naive Bayes MultinomialNB algorithim to get a non deep neural netwrok base metrics we can aim to beat
-- I used Weights and Biases for experiment trackig and hyperparamter sweeps. I performed 5 hyperparameter sweeps:
+- I used Weights and Biases for experiment trackig and hyperparamter sweeps. For faster training and hyperparameter tuning, the models in the sweeps only trained and validated on 20% of their respective datasets.
+- Below are the results of the best sweeps:  
+### Sweep 3
+- Architecture = LSTM
+- Optimizer: Adam
+- Max Vocab 70000
+- Pre-trained Embeddings  
+
+![Alt text](https://github.com/jacobh310/food_nlp/blob/master/images/sweep3.JPG)
+
+### Sweep 5
+- Architecture = LSTM
+- Optimizer: Adam
+- Max Vocab 70000
+- Embedding dimension: 300
+- No Pretrained Embeddings
+
+![Alt text](https://github.com/jacobh310/food_nlp/blob/master/images/sweep5.JPG)
+
+# Best Model's Performance
+---
+I took the best performing parameters from the sweeps and trained and validated the models on the whole dataset  
+
+![Alt text](https://github.com/jacobh310/food_nlp/blob/master/images/best_model_f1.JPG)
+
+# Model Evaluation for best model
+---
+### Confusion Matrix 
+![Alt text](https://github.com/jacobh310/food_nlp/blob/master/images/confusion_matrix.JPG)
+
+### ROC curve
+![Alt text](https://github.com/jacobh310/food_nlp/blob/master/images/roc_curve.JPG)
+
+### Model Deployment
+---
+- I built a flask API with two endpoints. One for a single review and the other for CSV file containing multiple reviews. The flask server was Dockerized and deployed to Google Cloud Run
+- For the front end, I used streamlit to build a user friendly interface
+- Predictions made on a CSV file were uploaded to a Google Cloud Storage bucker to track the health of the model
+
 
 
