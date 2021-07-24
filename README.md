@@ -1,4 +1,4 @@
-# Restaurant 5 Star Natural Language Processing Classifier
+# 5 Star Restaurant Review NLP Classifier
 ---
 ### Project at a glance
 - Scrapped over 1 million reviews along with their rating out of 5 
