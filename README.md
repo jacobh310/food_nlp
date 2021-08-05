@@ -13,8 +13,8 @@
 ### Code and Resources Used 
 ---
 **Python Version:** 3.8  
-**Packages:**  pandas, numpy, sklearn, matplotlib,  beautifulsoup, flask, json, pickle, tensorflow, gcloud  
-**Model Building:**  https://keras.io/examples/nlp/pretrained_word_embeddings/
+**Packages:**  pandas, numpy, sklearn, matplotlib,  beautifulsoup, flask, json, pickle, tensorflow, gcloud    
+**Model Building:**  https://keras.io/examples/nlp/pretrained_word_embeddings/  
 **Goole Cloud Run Deployment:** https://www.youtube.com/watch?v=vieoHqt7pxo
 
 ## Data Collection:
