@@ -15,7 +15,9 @@
 **Python Version:** 3.8  
 **Packages:**  pandas, numpy, sklearn, matplotlib,  beautifulsoup, flask, json, pickle, tensorflow, gcloud    
 **Model Building:**  https://keras.io/examples/nlp/pretrained_word_embeddings/  
-**Goole Cloud Run Deployment:** https://www.youtube.com/watch?v=vieoHqt7pxo
+**Goole Cloud Run Deployment:** https://www.youtube.com/watch?v=vieoHqt7pxo  
+**Heroku Buildbacks:** https://stackoverflow.com/questions/47446480/how-to-use-google-api-credentials-json-on-heroku   
+https://www.youtube.com/watch?v=gCjrEGAZCkw&t=681s
 
 ## Data Collection:
 ---
